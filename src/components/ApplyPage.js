@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import countries from '../utils/countries';
 import NavBar from './Navbar';
+import applyBackgroundImage from '../images/apply.jpg';
+import ViewVisaPage from './ViewVisaPage';
 
   const ApplyPage = () => {
+
+    const [visaData, setVisaData] = useState(null);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [mobile_number, setMobileNumber] = useState('');
@@ -18,6 +23,36 @@ import NavBar from './Navbar';
   const [selectedDestinationCountry, setDestinationCountry] = useState('');
   const [passportNumber, setPassportNumber] = useState('');
   const [purpose, setPurpose] = useState('');
+
+  const applyPageStyle = {
+    backgroundImage: `url(${applyBackgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    fontFamily: 'Arial, sans-serif',
+    textAlign: 'center',
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: 'white',
+  };
+
+  const formContainerStyle = {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Adjust the background color and opacity
+    padding: '20px',
+    borderRadius: '8px',
+  };
+
+  const headingStyle = {
+    fontSize: '24px',
+    fontWeight: 'bold',
+    marginBottom: '20px',
+  };
+
+  const formItemStyle = {
+    marginBottom: '10px',
+  };
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -79,90 +114,122 @@ import NavBar from './Navbar';
     setPurpose(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Add apply logic here
+  const handleSubmit = (formData) => {
+    // Process the form data and store it
+    setVisaData(formData);
   };
 
   return (
     <div>
       <NavBar></NavBar>
-      <h1>Apply for E-Visa</h1>
+      <div>
+      {visaData ? (
+        <ViewVisaPage visaData={visaData} />
+      ) : (
+      <div className='applyforvisa' style={applyPageStyle}>
+      <div style={formContainerStyle}>
+      <h1 style={headingStyle}>Apply for E-Visa</h1>
+      <br />
       <form onSubmit={handleSubmit}>
+      <div style={formItemStyle}>
         <label>
           Full Name:
           <input type="text" value={name} onChange={handleNameChange} />
         </label>
+        </div>
         <br />
         <br />
+        <div style={formItemStyle}>
         <label>
           Email:
           <input type="email" value={email} onChange={handleEmailChange} />
         </label>
+        </div>
         <br />
         <br />
+        <div style={formItemStyle}>
         <label>
           Mobile Number:
           <input type="int" value={mobile_number} onChange={handleMobileNumberChange} />
         </label>
+        </div>
         <br />
         <br />
+        <div style={formItemStyle}>
         <label>
           Gender:
           <input type="text" value={gender} onChange={handleGenderChange} />
         </label>
+        </div>
         <br />
         <br />
+        <div style={formItemStyle}>
         <label>
           DOB:
           <input type="date" value={dob} onChange={handleDOBChange} />
         </label>
+        </div>
         <br />
         <br />
+        <div style={formItemStyle}>
         <label>
           Age:
           <input type="number" value={age} onChange={handleAgeChange} />
         </label>
+        </div>
         <br />
         <br />
+        <div style={formItemStyle}>
         <label>
           Address:
           <input type="text" value={address} onChange={handleAddressChange} />
         </label>
+        </div>
         <br />
         <br />
+        <div style={formItemStyle}>
         <label>
           Pincode:
           <input type="number" value={pincode} onChange={handlePincodeChange} />
         </label>
+        </div>
         <br />
         <br />
+        <div style={formItemStyle}>
         <label>
           Aadhar:
           <input type="file" value={aadhar} onChange={handleAadharChange} />
         </label>
+        </div>
         <br />
         <br />
+        <div style={formItemStyle}>
         <label>
           Pan Card:
           <input type="file" value={pan_card} onChange={handlePanCardChange} />
         </label>
+        </div>
         <br />
         <br />
         </form>
         <form onSubmit={handleSubmit}>
+        <div style={formItemStyle}>
         <label>
           Photo:
           <input type="file" value={photo} onChange={handlePhotoChange} />
         </label>
+        </div>
         <br />
         <br />
+        <div style={formItemStyle}>
         <label>
           Signature:
           <input type="file" value={signature} onChange={handleSignatureChange} />
         </label>
+        </div>
         <br />
         <br />
+        <div style={formItemStyle}>
         <label>
           Destination Country:
           <select value={selectedDestinationCountry} onChange={handleDestinationCountryChange}>
@@ -174,24 +241,33 @@ import NavBar from './Navbar';
         ))}
       </select>
         </label>
+        </div>
         <br />
         <br />
+        <div style={formItemStyle}>
         <label>
           Passport Number:
           <input type="text" value={passportNumber} onChange={handlePassportNumberChange} />
         </label>
+        </div>
         <br />
         <br />
+        <div style={formItemStyle}>
         <label>
           Purpose:
           <textarea value={purpose} onChange={handlePurposeChange} />
         </label>
+        </div>
         <br />
-        <br />
-        <button type="submit">Apply</button>
+        <br />  
+        <button onClick={() => handleSubmit(/* Form data here */)}>Submit</button>
       </form>
     </div>
+    </div>
+    )}
+    </div>
+    </div>
   );
-};
+  };    
 
 export default ApplyPage;

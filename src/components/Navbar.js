@@ -5,9 +5,17 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
+//import logoImage from '../images/nav.png';
 
 const NavBar = () => {
   return (
+    // <nav style={{ backgroundColor: '#f2f2f2', padding: '0px 0px' }}>
+    //   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+    //     <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+    //       <img src={logoImage} alt="Logo" style={{ width: '40px', height: '40px', marginRight: '10px' }} />
+    //       <span style={{ fontSize: '18px', fontWeight: 'bold' }}>E-Visa Website</span>
+    //     </Link>
+    //     <ul>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
@@ -22,6 +30,9 @@ const NavBar = () => {
         </Toolbar>
       </AppBar>
     </Box>  
+    // </ul>
+    // </div>
+    // </nav>
   );
 };
 
